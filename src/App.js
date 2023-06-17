@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
 
@@ -16,7 +16,11 @@ const todoList = [
 ];
 
 function App() {
-  const [todos,setTodos] = useState(todoList)
+  const [todos,setTodos] = useState(JSON.parse(localStorage.getItem("todos")) || todoList)
+
+  useEffect(()=>{
+    localStorage.setItem("todos",JSON.stringify(todos))
+  },[todos])
 
   return (
     <div className="container">
