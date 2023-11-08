@@ -19,7 +19,7 @@ const Header = ({todos,setTodos}) => {
   return (
     <div>
       <h1 className="text-center text-danger m-5">Todo App</h1>
-      <InputGroup className="mb-3 w-50 d-flex mx-auto">
+      <InputGroup className="mb-3 w-100 w-sm-50 d-flex mx-auto">
         <Form.Control
           placeholder="Enter new todo..."
           aria-label="Recipient's username"
