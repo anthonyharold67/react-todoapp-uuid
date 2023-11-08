@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Not 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Responsive ayar için [videoya](https://www.youtube.com/watch?v=xraGQZIIu3M&list=PLI1eEv8mXfz7flUjx3_wujNiat7zup9HX&index=1) ek olarak kodlara bootstrap col yapısı eklendi. Yapılan değişiklikler:
 
-## Available Scripts
+1. Header Componentinde return kısmı aşağıdaki gibi güncellendi.
+```jsx
+return (
+    <div>
+      <h1 className="text-center text-danger m-5">Todo App</h1>
+      <div className="col col-12 col-md-6 d-flex mx-auto">
+        <InputGroup>
+          <Form.Control
+            placeholder="Enter new todo..."
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
+          />
+          <Button
+            className="input-group-text bg-success"
+            disabled={!task.trim()}
+            id="basic-addon2"
+            onClick={addTodo}
+          >
+            Add Todo
+          </Button>
+        </InputGroup>
+      </div>
+    </div>
+  );
+```
 
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+2. TodoList Componentinde return kısmı aşağıdaki gibi güncellendi.
+```jsx
+return (
+    <div>
+      <h2 className="text-center text-secondary">Todos</h2>
+      <ListGroup className="col col-12 col-md-6 d-flex mx-auto">
+        {todos.map((todo) => (
+          <ListGroup.Item
+            variant={todo.completed ? "success" : "danger"}
+            as={"li"}
+            role="button"
+            className="m-2 text-capitalize rounded-5 d-flex justify-content-between"
+            onDoubleClick={() => toggleTodo(todo.id)}
+          >
+            <span
+              className={
+                todo.completed
+                  ? "text-decoration-line-through"
+                  : "text-decoration-none"
+              }
+            >
+              {todo.text}
+            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="red"
+              role="button"
+              onClick={() => deleteTodo(todo.id)}
+              className="bi bi-trash-fill"
+              viewBox="0 0 16 16"
+            >
+              <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+            </svg>
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
+    </div>
+  );
+```
