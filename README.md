@@ -7,7 +7,7 @@ Responsive ayar için [videoya](https://www.youtube.com/watch?v=xraGQZIIu3M&list
 return (
     <div>
       <h1 className="text-center text-danger m-5">Todo App</h1>
-      <div className="col col-12 col-md-6 d-flex mx-auto">
+      <div className="col col-12 col-md-6 d-flex mx-auto mb-3">
         <InputGroup>
           <Form.Control
             placeholder="Enter new todo..."
