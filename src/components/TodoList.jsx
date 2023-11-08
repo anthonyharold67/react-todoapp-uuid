@@ -16,7 +16,7 @@ const TodoList = ({todos, setTodos}) => {
   return (
     <div>
       <h2 className="text-center text-secondary">Todos</h2>
-      <ListGroup className="w-50 d-flex mx-auto">
+      <ListGroup className="w-100 w-sm-50 d-flex mx-auto">
         {todos.map(todo => (
           <ListGroup.Item
             variant="success"
